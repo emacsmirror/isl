@@ -1335,7 +1335,8 @@ This function is intended to be used in kmacros."
 
 (defun isl--use-region-p ()
   "Decide when to use the region for searching.
-This according to the value of `isl-use-region-when-at'."
+This according to the value of `isl-use-region-when-at' and current
+position in buffer."
   (let ((fn (pcase isl-use-region-when-at
               ('beginning #'region-beginning)
               ('end       #'region-end)
