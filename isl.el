@@ -1345,17 +1345,17 @@ position in buffer."
          (eql (funcall fn) (point)))))
 
 ;;;###autoload
-(defun isl-search (&optional beg end)
+(defun isl-search ()
   "Start incremental searching in current buffer.
 If region is active and point is at beginning or end of region according
 to `isl-use-region-when-at', search in it instead of searching in the
 whole buffer, otherwise the region is used as default search string.
 When used in kbd macros, search next match forward from point and stop,
 assuming user starts its macro above the text to edit."
-  (interactive "r")
-  (setq isl--beginning (or (and (isl--use-region-p) beg)
+  (interactive)
+  (setq isl--beginning (or (and (isl--use-region-p) (region-beginning))
                            (point-min))
-        isl--end (or (and (isl--use-region-p) end)
+        isl--end (or (and (isl--use-region-p) (region-end))
                      (point-max)))
   (if executing-kbd-macro
       (isl--search-string)
